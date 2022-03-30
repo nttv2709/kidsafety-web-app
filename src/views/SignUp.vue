@@ -18,9 +18,9 @@
         </div>
       </div>
       <div class="container-fluid">
-        <button type="submit" class="btn btn-primary">Sign up</button>
+        <button type="submit" class="btn btn-primary rounded-pill">Sign up</button>
       </div>
-      <router-link to="/login" type="button" class="btn btn-primary">Log in</router-link>
+      <router-link to="/login" type="button" class="btn btn-primary rounded-pill">Log in</router-link>
 </form>
   </div>
 </template>
@@ -32,16 +32,23 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
   form {
+    font-family: 'DM Sans', sans-serif;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 25px;
     margin: 5rem;
-    padding: 2rem;
+    padding: 2rem 4rem;
+  }
+    p {
+    font-weight: bold;
+    color: #557DCA;
   }
   .content {
     text-align: left;
   }
-  button {
-    margin-bottom: 25px;
+  .btn {
+    margin-top: 25px;
+padding: 0.75rem 1.25rem;
   }
 </style>

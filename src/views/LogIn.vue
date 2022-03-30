@@ -1,5 +1,5 @@
 <template>
-  <div class="position-absolute top-50 start-50 translate-middle">
+  <div class="frame position-absolute top-50 start-50 translate-middle">
     <form>
       <p class="fs-1">Welcome Back</p>
       <div class="content">
@@ -14,9 +14,9 @@
         </div>
       </div>
       <div class="container-fluid">
-        <button type="submit" class="btn btn-primary">Log in</button>
+        <button type="submit" class="btn1 btn btn-primary rounded-pill">Log in</button>
       </div>
-      <router-link to="/signup" type="button" class="btn btn-primary">Sign up</router-link>
+      <router-link to="/signup" type="button" class="btn2 btn btn-primary rounded-pill">Sign up</router-link>
 </form>
   </div>
 </template>
@@ -28,17 +28,23 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
   form {
+    font-family: 'DM Sans', sans-serif;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 25px;
     margin: 5rem;
-    padding: 2rem;
+    padding: 2rem 4rem;
+  }
+  p {
+    font-weight: bold;
+    color: #557DCA;
   }
   .content {
     text-align: left;
   }
-  button {
+  .btn {
     margin-top: 25px;
+padding: 0.75rem 1.25rem;
   }
-
 </style>

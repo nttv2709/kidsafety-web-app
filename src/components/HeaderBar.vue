@@ -9,8 +9,10 @@
           height="24"
           class="d-inline-block align-text-top"
         />
-        Company
       </router-link>
+        <div class="brand">
+        Company
+        </div>
       <button
         class="navbar-toggler"
         type="button"
@@ -42,9 +44,9 @@
         </ul>
       </div>
       <router-link to="/login"
-        class="btn btn-light border border-5 rounded-pill text-uppercase"
+        class="btn btn-light border rounded-pill text-uppercase"
       >
-        Log in
+        <div class="notice">Log in</div>
       </router-link>
     </div>
   </nav>
@@ -57,7 +59,27 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&display=swap');
 #bar {
   opacity: 100%;
+}
+.nav-item{
+font-family: 'DM Sans', sans-serif;
+font-weight: medium;
+}
+.brand {
+  font-size: 1.5rem;
+  font-family: 'Pacifico', cursive;
+}
+.btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+}
+.notice {
+  color: #57B3FE;
+  font-weight: medium;
 }
 </style>

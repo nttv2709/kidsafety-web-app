@@ -1,8 +1,12 @@
 <template>
   <div class="content container-fluid">
-    <p class="pt-5 fs-1">The way to protect your kids</p>
-    <p class="fs-5">Subtitle</p>
-    <router-link to="/signup" type="button" class="btn btn-light border border-5 rounded-pill text-uppercase">Sign up</router-link>
+    <p class="title pt-5 fs-1">The way to protect your kids</p>
+    <p class="subtitle fs-5">Subtitle</p>
+    <router-link to="/signup" type="button" class="btn btn-light border rounded-pill text-uppercase">
+<div class="notice">
+Sign up
+</div>
+</router-link>
     <div class="container-fluid pt-4 ">
       <img src="../assets/baby.png" class="" alt="...">
     </div>
@@ -16,6 +20,7 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
   .title {
     font-family: 'DM Sans';
     font-style: normal;
@@ -29,4 +34,21 @@ export default {
   .content {
     position: relative;
   }
+.title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: medium;
+}
+.subtitle {
+  font-family: 'DM Sans', sans-serif;
+}
+.btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+}
+.notice {
+  color: #57B3FE;
+  font-weight: medium;
+}
 </style>
