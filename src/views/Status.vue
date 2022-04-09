@@ -1,9 +1,9 @@
 <template>
-  <div class="history"></div>
+  <div class="status"></div>
 </template>
 
 <script>
 export default {
-  name: 'HistoryPage'
+  name: 'StatusPage'
 }
 </script>

@@ -2,8 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
 import LogIn from '../views/LogIn.vue'
 import SignUp from '../views/SignUp.vue'
-import CameraCheck from '../views/CameraCheck.vue'
-import HistoryPage from '../views/HistoryPage.vue'
+import StatusPage from '../views/Status.vue'
 import ContactUs from '../views/ContactUs.vue'
 
 const routes = [
@@ -23,14 +22,9 @@ const routes = [
     component: SignUp
   },
   {
-    path: '/camera',
-    name: 'camera',
-    component: CameraCheck
-  },
-  {
-    path: '/history',
-    name: 'history',
-    component: HistoryPage
+    path: '/status',
+    name: 'status',
+    component: StatusPage
   },
   {
     path: '/contact',

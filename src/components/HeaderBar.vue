@@ -33,10 +33,7 @@
             <router-link to="/" class="nav-link" >Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/camera" class="nav-link">Camera</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="" class="nav-link">History</router-link>
+            <router-link to="/status" class="nav-link">Status</router-link>
           </li>
           <li class="nav-item">
             <router-link to="" class="nav-link">Contact us</router-link>

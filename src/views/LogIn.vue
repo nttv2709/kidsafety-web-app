@@ -4,26 +4,32 @@
       <p class="fs-1">Welcome Back</p>
       <div class="content">
         <div class="mb-3">
-          <input type="email" class="form-control rounded-pill" placeholder="Username" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <input type="email" class="form-control rounded-pill" placeholder="Username" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="username">
         </div>
         <div class="mb-3">
-          <input type="password" class="form-control rounded-pill" placeholder="Password" id="exampleInputPassword1">
+          <input type="password" class="form-control rounded-pill" placeholder="Password" id="exampleInputPassword1" v-model="password">
         </div>
         <div class="mb-3k text-end">
           <router-link to="">Forgot password?</router-link>
         </div>
       </div>
       <div class="container-fluid">
-        <button type="submit" class="btn1 btn btn-primary rounded-pill">Log in</button>
+        <button type="submit" class="btn1 btn rounded-pill">Log in</button>
       </div>
-      <router-link to="/signup" type="button" class="btn2 btn btn-primary rounded-pill">Sign up</router-link>
+      <router-link to="/signup" type="button" class="btn2 btn rounded-pill">Sign up</router-link>
 </form>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'LogIn'
+  name: 'LogIn',
+  data () {
+    return {
+      username: '',
+      password: ''
+    }
+  }
 }
 </script>
 
@@ -46,5 +52,14 @@ export default {
   .btn {
     margin-top: 25px;
 padding: 0.75rem 1.25rem;
+  }
+    .btn1 {
+    background-color: #557DCA;
+    color: white;
+  }
+  .btn2 {
+    background-color: #ffffff;
+    border-color: #557DCA;
+    color: black;
   }
 </style>

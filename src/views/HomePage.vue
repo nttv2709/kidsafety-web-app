@@ -1,6 +1,6 @@
 <template>
   <div class="content container-fluid">
-    <p class="title pt-5 fs-1">The way to protect your kids</p>
+    <p class="title pt-5">The way to protect your kids</p>
     <p class="subtitle fs-5">Subtitle</p>
     <router-link to="/signup" type="button" class="btn btn-light border rounded-pill text-uppercase">
 <div class="notice">
@@ -37,9 +37,11 @@ export default {
 .title {
   font-family: 'DM Sans', sans-serif;
   font-weight: medium;
+  font-size: 3.5rem;
 }
 .subtitle {
   font-family: 'DM Sans', sans-serif;
+  font-size: 2.5rem;
 }
 .btn {
   font-family: 'DM Sans', sans-serif;
@@ -50,5 +52,8 @@ export default {
 .notice {
   color: #57B3FE;
   font-weight: medium;
+}
+p {
+  margin-bottom: 1.5rem;
 }
 </style>

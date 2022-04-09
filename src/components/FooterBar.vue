@@ -8,8 +8,7 @@
 
     <ul class="nav col-md-4 justify-content-center">
       <li class="nav-item"><router-link to="/" class="nav-link px-2 text-muted">Home</router-link></li>
-      <li class="nav-item"><router-link to="/camera" class="nav-link px-2 text-muted">Camera</router-link></li>
-      <li class="nav-item"><router-link to="/history" class="nav-link px-2 text-muted">History</router-link></li>
+      <li class="nav-item"><router-link to="/status" class="nav-link px-2 text-muted">Status</router-link></li>
       <li class="nav-item"><router-link to="/contact" class="nav-link px-2 text-muted">Contact us</router-link></li>
     </ul>
   </footer>
