@@ -1,23 +1,23 @@
-// import { initializeApp } from 'firebase/app'
-// // import { getDatabase } from 'firebase/database'
-// // import { getAuth } from 'firebase/auth'
+import { initializeApp } from 'firebase/app'
+// import { getDatabase } from 'firebase/database'
+// import { getAuth } from 'firebase/auth'
 
-// const firebaseConfig = {
-//   apiKey: 'AIzaSyA2TCq7KKE8hD_p8hfJo1yEAIE7QLovlt4',
-//   authDomain: 'babycare-7a592.firebaseapp.com',
-//   databaseURL: 'https://babycare-7a592-default-rtdb.asia-southeast1.firebasedatabase.app',
-//   projectId: 'babycare-7a592',
-//   storageBucket: 'babycare-7a592.appspot.com',
-//   messagingSenderId: '566603872652',
-//   appId: '1:566603872652:web:205236a0dba59514bffea9',
-//   measurementId: 'G-QC5980E8BZ'
-// }
+const firebaseConfig = {
+  apiKey: 'AIzaSyA2TCq7KKE8hD_p8hfJo1yEAIE7QLovlt4',
+  authDomain: 'babycare-7a592.firebaseapp.com',
+  databaseURL: 'https://babycare-7a592-default-rtdb.asia-southeast1.firebasedatabase.app',
+  projectId: 'babycare-7a592',
+  storageBucket: 'babycare-7a592.appspot.com',
+  messagingSenderId: '566603872652',
+  appId: '1:566603872652:web:205236a0dba59514bffea9',
+  measurementId: 'G-QC5980E8BZ'
+}
 
-// Initialize Firebase
-// const app = initializeApp(firebaseConfig)
+//Initialize Firebase
+const app = initializeApp(firebaseConfig)
 
-// Get a reference to the database service
-// const database = getDatabase(app)
+//Get a reference to the database service
+const database = getDatabase(app)
 
-// // Initialize Firebase Authentication and get a reference to the service
-// const auth = getAuth(app)
+// Initialize Firebase Authentication and get a reference to the service
+const auth = getAuth(app)
