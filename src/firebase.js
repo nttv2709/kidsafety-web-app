@@ -1,8 +1,6 @@
 import { initializeApp } from 'firebase/app'
-import { getDatabase } from 'firebase/database'
-import { getAuth } from 'firebase/auth'
-
-const firebaseConfig = {
+// import { getDatabase, onValue } from 'firebase/database'
+const config = {
   apiKey: 'AIzaSyA2TCq7KKE8hD_p8hfJo1yEAIE7QLovlt4',
   authDomain: 'babycare-7a592.firebaseapp.com',
   databaseURL: 'https://babycare-7a592-default-rtdb.asia-southeast1.firebasedatabase.app',
@@ -13,11 +11,7 @@ const firebaseConfig = {
   measurementId: 'G-QC5980E8BZ'
 }
 
-//Initialize Firebase
-const app = initializeApp(firebaseConfig)
+// Initialize Firebase
+const app = initializeApp(config)
 
-//Get a reference to the database service
-const database = getDatabase(app)
-
-// Initialize Firebase Authentication and get a reference to the service
-const auth = getAuth(app)
+export default app

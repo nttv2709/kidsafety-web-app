@@ -36,7 +36,7 @@
             <router-link to="/status" class="nav-link">Status</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="" class="nav-link">Contact us</router-link>
+            <router-link to="/contact" class="nav-link">Contact us</router-link>
           </li>
         </ul>
       </div>
