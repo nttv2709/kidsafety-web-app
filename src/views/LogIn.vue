@@ -34,9 +34,7 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
-  form {
-    font-family: 'DM Sans', sans-serif;
+form {
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 25px;
     margin: 5rem;

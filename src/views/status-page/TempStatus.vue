@@ -1,11 +1,13 @@
 <template>
-  <div class="card m-5" style="width: 18rem; border-radius: 40px;">
-    <div class="card-body">
-        <h5 class="card-title">{{ currentValue }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
+<div class="row rounded-pill g-0 m-5 bg-light position-relative" style="width:20%; background-color: white;">
+  <div class="col-md-6 mb-md-0 p-md-4">
+    <img src="../../assets/hot.png" class="w-100" alt="...">
   </div>
+  <div class="col-md-6 p-4 ps-md-0">
+    <h1 class="value py-3">{{ currentValue }}<span>&#x2103;</span></h1>
+    <p class="text-start">Status: {{ status }}</p>
+  </div>
+</div>
 </template>
 
 <script>
@@ -15,14 +17,25 @@ export default {
   name: 'TempStatus',
   data () {
     return {
-      currentValue: ''
+      currentValue: '',
+      status: ''
     }
   },
   mounted () {
     onValue(ref(StatusDataService.getAll(), 'temp'), (snapshot) => {
       const data = snapshot.val()
       this.currentValue = data.value
+      if (this.currentValue >= 27 && this.currentValue < 32) {
+        this.status = 'Normal'
+      } else if (this.currentValue >= 25 && this.currentValue < 27) {
+        this.status = 'Cool'
+      }
     })
   }
 }
 </script>
+<style scoped>
+span {
+  content: "\2103";
+}
+</style>

@@ -19,9 +19,3 @@ export default {
   name: 'FooterBar'
 }
 </script>
-.<style scoped>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&display=swap');
-footer {
-font-family: 'DM Sans', sans-serif;
-}
-</style>
