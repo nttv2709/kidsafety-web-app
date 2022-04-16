@@ -18,6 +18,7 @@ export default {
   data () {
     return {
       currentValue: '',
+      temperature: [],
       status: ''
     }
   },
@@ -25,6 +26,7 @@ export default {
     onValue(ref(StatusDataService.getAll(), 'temp'), (snapshot) => {
       const data = snapshot.val()
       this.currentValue = data.value
+      this.temperature.push(this.currentValue)
       if (this.currentValue >= 27 && this.currentValue < 32) {
         this.status = 'Normal'
       } else if (this.currentValue >= 25 && this.currentValue < 27) {
