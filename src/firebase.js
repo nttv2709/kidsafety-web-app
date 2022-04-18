@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-// import { getDatabase, onValue } from 'firebase/database'
+import { getAuth } from 'firebase/auth'
 const config = {
   apiKey: 'AIzaSyA2TCq7KKE8hD_p8hfJo1yEAIE7QLovlt4',
   authDomain: 'babycare-7a592.firebaseapp.com',
@@ -13,5 +13,5 @@ const config = {
 
 // Initialize Firebase
 const app = initializeApp(config)
-
+export const auth = getAuth(app)
 export default app

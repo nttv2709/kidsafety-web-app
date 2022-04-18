@@ -1,13 +1,13 @@
 <template>
   <div class="frame position-absolute top-50 start-50 translate-middle">
-    <form>
+    <form @submit.prevent='login'>
       <p class="fs-1">Welcome Back</p>
       <div class="content">
         <div class="mb-3">
-          <input type="email" class="form-control rounded-pill" placeholder="Username" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="username">
+          <input type="email" class="form-control rounded-pill" placeholder="Email" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="login_form.email" required>
         </div>
         <div class="mb-3">
-          <input type="password" class="form-control rounded-pill" placeholder="Password" id="exampleInputPassword1" v-model="password">
+          <input type="password" class="form-control rounded-pill" placeholder="Password" id="exampleInputPassword1" v-model="login_form.password" required>
         </div>
         <div class="mb-3k text-end">
           <router-link to="">Forgot password?</router-link>
@@ -22,12 +22,21 @@
 </template>
 
 <script>
+import { useStore } from 'vuex'
+import { ref } from 'vue'
+/* eslint-disable */
 export default {
   name: 'LogIn',
   data () {
+    const login_form = ref({})
+    const store = useStore()
+    const login = () => {
+      store.dispatch('login', login_form.value)
+    }
+
     return {
-      username: '',
-      password: ''
+      login_form,
+      login
     }
   }
 }

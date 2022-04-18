@@ -27,6 +27,7 @@
       <div
         class="collapse navbar-collapse d-flex justify-content-center"
         id="navbarNav"
+        v-if="$store.state.user"
       >
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -37,6 +38,9 @@
             </li>
             <li class="nav-item">
               <router-link to="/contact" class="nav-link">Contact us</router-link>
+            </li>
+            <li class="nav-item">
+              <button @click="$store.dispatch('logout')">Logout</button>
             </li>
         </ul>
       </div>
@@ -52,8 +56,19 @@
 </template>
 
 <script>
+import { onBeforeMount } from 'vue'
+import { useStore } from 'vuex'
 export default {
-  name: 'HeaderBar'
+  name: 'HeaderBar',
+  setup () {
+    const store = useStore()
+    onBeforeMount(() => {
+      store.dispatch('fetchUser')
+    })
+    return {
+      user: store.state.user
+    }
+  }
 }
 </script>
 
