@@ -27,7 +27,7 @@
       <div
         class="collapse navbar-collapse d-flex justify-content-center"
         id="navbarNav"
-        v-if="$store.state.user"
+        v-if="this.user"
       >
         <ul class="navbar-nav">
             <li class="nav-item">

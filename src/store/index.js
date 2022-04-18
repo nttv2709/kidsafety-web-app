@@ -76,12 +76,12 @@ const store = createStore({
       router.push('/login')
     },
 
-    fetchUsers ({ commit }) {
+    fetchUser ({ commit }) {
       auth.onAuthStateChanged(async user => {
         if (user) {
           commit('SET_USER', user)
 
-          if (router.isReady() && router.currentRoute.path === '/login') {
+          if (router.isReady() && router.currentRoute.value.path === '/login') {
             router.push('/')
           }
         } else {
