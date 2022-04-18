@@ -21,6 +21,7 @@
         aria-controls="navbarNav"
         aria-expanded="false"
         aria-label="Toggle navigation"
+        v-if="this.user"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -39,17 +40,16 @@
             <li class="nav-item">
               <router-link to="/contact" class="nav-link">Contact us</router-link>
             </li>
-            <li class="nav-item">
-              <button @click="$store.dispatch('logout')">Logout</button>
-            </li>
         </ul>
       </div>
           <div class="top-0 end-0">
             <router-link to="/login"
-              class="btn btn-light border rounded-pill text-uppercase"
+              class="btn btn-light border rounded-pill text-uppercase notice"
+              v-if="this.user"
             >
-              <div class="notice">Log in</div>
+              Log in
             </router-link>
+            <button v-else type="button" class="notice btn btn-light border rounded-pill text-uppercase" @click="$store.dispatch('logout')">Log out</button>
           </div>
     </div>
   </nav>
@@ -81,7 +81,7 @@ export default {
 font-weight: medium;
 }
 .brand {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-family: 'Pacifico', cursive;
 }
 .btn {
