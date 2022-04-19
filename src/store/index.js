@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import router from '../router'
 import { auth } from '../firebase'
+import { getDatabase, ref, set } from 'firebase/database'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 
 const store = createStore({
@@ -18,11 +19,9 @@ const store = createStore({
   },
   actions: {
     async signup ({ commit }, details) {
-      console.log(details)
       const { email, password } = details
       try {
         await createUserWithEmailAndPassword(auth, email, password)
-        console.log(auth.currentUser)
       } catch (err) {
         switch (err.code) {
           case 'auth/email-already-in-use':
@@ -43,54 +42,67 @@ const store = createStore({
 
         return
       }
-      commit('SET_USER', auth.currentUser)
+      /* eslint-disable */
+            const write_db = () => {
+                const db = getDatabase()
+                set(ref(db, 'babys/' + auth.currentUser.uid), {
+                    baby_name: '',
+                    parent_name: '',
+                    parent_phone: '',
+                    baby_birthday: '',
+                    baby_weight: '',
+                    baby_height: ''
+                })
+            }
+            write_db()
+            commit('SET_USER', auth.currentUser)
 
-      router.push('/')
-    },
-    async login ({ commit }, details) {
-      const { email, password } = details
-      try {
-        await signInWithEmailAndPassword(auth, email, password)
-      } catch (err) {
-        switch (err.code) {
-          case 'auth/user-not-found':
-            alert('User not found')
-            break
-          case 'auth/wrong-password':
-            alert('Wrong password')
-            break
-          default:
-            alert('Something went wrong')
-        }
-
-        return
-      }
-      commit('SET_USER', auth.currentUser)
-
-      router.push('/')
-    },
-    async logout ({ commit }, details) {
-      await signOut(auth)
-
-      commit('CLEAR_USER')
-
-      router.push('/login')
-    },
-
-    fetchUser ({ commit }) {
-      auth.onAuthStateChanged(async user => {
-        if (user) {
-          commit('SET_USER', user)
-
-          if (router.isReady() && router.currentRoute.value.path === '/login') {
             router.push('/')
-          }
-        } else {
-          commit('CLEAR_USER')
+        },
+        async login({ commit }, details) {
+            const { email, password } = details
+            try {
+                await signInWithEmailAndPassword(auth, email, password)
+            } catch (err) {
+                switch (err.code) {
+                    case 'auth/user-not-found':
+                        alert('User not found')
+                        break
+                    case 'auth/wrong-password':
+                        alert('Wrong password')
+                        break
+                    default:
+                        alert('Something went wrong')
+                }
+
+                return
+            }
+            commit('SET_USER', auth.currentUser)
+
+            router.push('/')
+        },
+        async logout({ commit }, details) {
+            await signOut(auth)
+
+            commit('CLEAR_USER')
+
+            router.push('/login')
+        },
+
+        fetchUser({ commit }) {
+            auth.onAuthStateChanged(async user => {
+                if (user) {
+                    commit('SET_USER', user)
+
+                    if (router.isReady() && router.currentRoute.value.path === '/login') {
+                        router.push('/')
+                    }
+                } else {
+                    commit('CLEAR_USER')
+                }
+            })
         }
-      })
     }
-  }
 })
 
 export default store
