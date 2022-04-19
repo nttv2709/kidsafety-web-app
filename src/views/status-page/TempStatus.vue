@@ -23,7 +23,7 @@ export default {
     }
   },
   mounted () {
-    onValue(ref(StatusDataService.getAll(), 'temp'), (snapshot) => {
+    onValue(ref(StatusDataService.getAll(), '/iot/temp'), (snapshot) => {
       const data = snapshot.val()
       this.currentValue = data.value
       this.temperature.push(this.currentValue)
@@ -31,7 +31,7 @@ export default {
         this.status = 'Normal'
       } else if (this.currentValue >= 25 && this.currentValue < 27) {
         this.status = 'Cool'
-      }
+      } else { this.status = 'Hot' }
     })
   }
 }

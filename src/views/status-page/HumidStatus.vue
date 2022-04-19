@@ -22,7 +22,8 @@ export default {
     }
   },
   mounted () {
-    onValue(ref(StatusDataService.getAll(), 'humi'), (snapshot) => {
+    console.log(StatusDataService.getAll())
+    onValue(ref(StatusDataService.getAll(), '/iot/humi'), (snapshot) => {
       const data = snapshot.val()
       this.currentValue = data.value
       if (this.currentValue >= 50) {

@@ -18,7 +18,7 @@ export default {
     }
   },
   mounted () {
-    onValue(ref(StatusDataService.getAll(), 'sound'), (snapshot) => {
+    onValue(ref(StatusDataService.getAll(), '/iot/sound'), (snapshot) => {
       const data = snapshot.val()
       this.currentValue = data.value
       if (this.currentValue >= 50) {
