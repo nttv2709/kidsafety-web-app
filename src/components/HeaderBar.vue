@@ -21,7 +21,7 @@
         aria-controls="navbarNav"
         aria-expanded="false"
         aria-label="Toggle navigation"
-        v-if="this.user"
+        v-if="$store.state.user"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -45,7 +45,7 @@
           <div class="top-0 end-0">
             <router-link to="/login"
               class="btn btn-light border rounded-pill text-uppercase notice"
-              v-if="this.user"
+              v-if="!$store.state.user"
             >
               Log in
             </router-link>

@@ -4,10 +4,10 @@
       <p class="fs-1">Create Account</p>
       <div class="content">
         <div class="mb-3">
-          <input type="email" class="form-control rounded-pill" placeholder="Email" id="exampleInputPassword1" v-model="signup_form.email" required>
+          <input type="email" class="form-control rounded-pill" placeholder="Email" id="exampleInputEmail2" v-model="signup_form.email" required>
         </div>
         <div class="mb-3">
-          <input type="password" class="form-control rounded-pill" placeholder="Password" id="exampleInputPassword1" v-model= "signup_form.password" required>
+          <input type="password" class="form-control rounded-pill" placeholder="Password" id="exampleInputPassword2" v-model= "signup_form.password" required>
         </div>
         <div class="mb-3 form-check">
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
