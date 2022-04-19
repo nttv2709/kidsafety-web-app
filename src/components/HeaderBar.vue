@@ -27,7 +27,7 @@
       <div
         class="collapse navbar-collapse d-flex justify-content-center"
         id="navbarNav"
-        v-if="this.user"
+        v-if="$store.state.user"
       >
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -65,9 +65,6 @@ export default {
     onBeforeMount(() => {
       store.dispatch('fetchUser')
     })
-    return {
-      user: store.state.user
-    }
   }
 }
 </script>
