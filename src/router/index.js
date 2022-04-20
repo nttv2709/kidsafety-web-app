@@ -72,7 +72,10 @@ const routes = [{
 {
   path: '/user',
   name: 'user info',
-  component: InfoUser
+  component: InfoUser,
+  meta: {
+    requiresAuth: true
+  }
 
 }
 ]
@@ -90,10 +93,10 @@ router.beforeEach((to, from, next) => {
     return
   }
 
-  // if (to.matched.some(record => record.meta.requiresAuth) && !currentUser) {
-  //   next('/login')
-  //   return
-  // }
+  if (to.matched.some(record => record.meta.requiresAuth) && !currentUser) {
+    next('/login')
+    return
+  }
   next()
 })
 

@@ -5,26 +5,32 @@
       </div>
       <div class="content">
         <div class="mb-3">
-          <input type="text" class="form-control rounded-pill" v-model="babyName"  id="baby-name" aria-describedby="babyName" required>
+          <label for="baby-name">Baby name</label>
+          <input type="text" class="form-control rounded-pill" v-model="baby_form.baby_name"  id="baby-name" aria-describedby="babyName" >
         </div>
         <div class="mb-3">
-          <input type="date" class="form-control rounded-pill" v-model="babyBirth"  id="baby-birth" aria-describedby="babyBirth" required>
+          <label for="baby-birth">Baby birth</label>
+          <input type="date" class="form-control rounded-pill" v-model="baby_form.baby_birth"  id="baby-birth" aria-describedby="babyBirth" >
         </div>
         <div class="mb-3">
-          <input type="number" class="form-control rounded-pill" v-model="babyHeight" id="baby-height" aria-describedby="babyHeight" required><span> cm</span>
+          <label for="baby-height">Baby height</label>
+          <input type="number" class="form-control rounded-pill" v-model="baby_form.baby_height" id="baby-height" aria-describedby="babyHeight" ><span> cm</span>
         </div>
         <div class="mb-3">
-          <input type="number" class="form-control rounded-pill" v-model="babyWeight" id="baby-weight" aria-describedby="babyWeight" required> kg
+          <label for="baby-weight">Baby weight</label>
+          <input type="number" class="form-control rounded-pill" v-model="baby_form.baby_weight" id="baby-weight" aria-describedby="babyWeight" > kg
         </div>
         <div class="mb-3">
-          <input type="text" class="form-control rounded-pill" v-model="parentName"  id="parent-name" aria-describedby="parentName" required>
+          <label for="parent-name">Parent name</label>
+          <input type="text" class="form-control rounded-pill" v-model="baby_form.parent_name"  id="parent-name" aria-describedby="parentName" >
         </div>
         <div class="mb-3">
-          <input type="tel" class="form-control rounded-pill" v-model="parentPhone"  id="parent-phone" aria-describedby="parentPhone" required>
+          <label for="parent-phone">Parent phone</label>
+          <input type="tel" class="form-control rounded-pill" v-model="baby_form.parent_phone"  id="parent-phone" aria-describedby="parentPhone" required>
         </div>
       </div>
       <div class="container-fluid">
-        <button type="submit" class="btn1 btn rounded-pill">Save</button>
+        <button type="submit" class="btn1 btn rounded-pill" @click="save">Save</button>
       </div>
 </form>
   </div>
@@ -34,7 +40,8 @@
 // import { useStore } from 'vuex'
 // import { ref } from 'vue'
 import { auth } from '../firebase'
-import { ref, get } from 'firebase/database'
+import { ref, get, set } from 'firebase/database'
+import { ref as reff } from 'vue'
 
 import StatusDataService from '../services/StatusDataService'
 
@@ -42,13 +49,14 @@ import StatusDataService from '../services/StatusDataService'
 export default {
   name: 'InfoUser',
   data () {
-    // const db = getDatabase(app)
-    // console.log(db)
-    console.log(auth)
+    console.log(auth.currentUser)
+    const baby_form = reff({})
     const db = StatusDataService.getAll()
     get(ref(db, 'babys/' + auth.currentUser.uid)).then((snapshot) => {
   if (snapshot.exists()) {
-    console.log(snapshot.babyName);
+    console.log(snapshot.val())
+    baby_form.value = snapshot.val()
+    console.log(baby_form.value)
   } else {
     console.log("No data available");
   }
@@ -57,22 +65,16 @@ export default {
 });
     
     return {
-      babyName: 'Baby name',
-      babyBirth: '01/01/2000',
-      babyHeight: 0,
-      babyWeight: 0,
-      parentName: 'Parent name',
-      parentPhone: '0000000'
+      baby_form
     }
   },
-  mounted () {
-    document.getElementById('baby-name').value = this.babyName
-    document.getElementById('baby-birth').value = this.babyBirth
-    document.getElementById('baby-height').value = this.babyHeight
-    document.getElementById('baby-weight').value = this.babyWeight
-    document.getElementById('parent-name').value = this.parentName
-    document.getElementById('parent-phone').value = this.parentPhone
-
+  methods : {
+    save() {
+      console.log(this.baby_form)
+      console.log(auth.currentUser.uid)
+      const db = StatusDataService.getAll()
+      set(ref(db, 'babys/' + auth.currentUser.uid), this.baby_form)
+    }
   }
   }
 

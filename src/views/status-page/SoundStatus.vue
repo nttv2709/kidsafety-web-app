@@ -9,7 +9,7 @@
 </div>
 <div class="modal" id="id1">
   <div class="modal-dialog position-absolute w-75 top-50 start-50 translate-middle">
-    <div class="modal-content blur " style="border-radius: 25px">
+    <div class="modal-content " style="border-radius: 25px">
       <div class="modal-header">
         <h5 class="modal-title">Modal title</h5>
         <button type="button" class="btn-close" @click="hiddenNotify" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -67,10 +67,5 @@ export default {
   .modal {
     position: absolute;
   }
-  .blur {
-    box-shadow: 0px 0px 20px 20px rgba(255,255,255,1);
-    text-shadow: 0px 0px 10px rgba(51, 51, 51, 0.9);
-    transform: scale(0.9);
-    opacity: 0.6;
-}
+
 </style>
