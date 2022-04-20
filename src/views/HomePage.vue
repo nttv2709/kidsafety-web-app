@@ -2,11 +2,8 @@
   <div class="content container-fluid">
     <p class="title pt-5">The way to protect your kids</p>
     <p class="subtitle fs-5">Subtitle</p>
-    <!-- <router-link to="/signup" type="button" class="btn btn-light border rounded-pill text-uppercase">
-<div class="notice">
-Sign up
+  <div class="notice">
 </div>
-</router-link> -->
     <div class="container-fluid pt-4 ">
       <img src="../assets/baby.png" class="" alt="...">
     </div>

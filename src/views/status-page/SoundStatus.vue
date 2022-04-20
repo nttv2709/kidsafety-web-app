@@ -1,4 +1,12 @@
 <template>
+<div class="row rounded-pill g-0 m-5 bg-light position-relative" style="width:20%">
+  <div class="col-md-6 mb-md-0 p-md-4">
+    <img v-if="crying == 3" src="../../assets/cry2.png" class="w-100" alt="...">
+    <img v-else-if="crying == 2" src="../../assets/cry1.png" class="w-100" alt="...">
+    <img v-else-if="crying == 1" src="../../assets/smile.png" class="w-100" alt="...">
+    <img v-else src="../../assets/sleepy.png" class="w-100" alt="...">
+  </div>
+</div>
 <div class="modal" id="id1">
   <div class="modal-dialog position-absolute w-75 top-50 start-50 translate-middle">
     <div class="modal-content blur " style="border-radius: 25px">
@@ -24,7 +32,7 @@ export default {
     return {
       currentValue: '',
       sound: [],
-      crying: false
+      crying: 0
     }
   },
   mounted () {
@@ -32,10 +40,15 @@ export default {
       const data = snapshot.val()
       this.currentValue = data.value
       this.sound.push(this.currentValue)
-      if (this.currentValue >= 50) {
-        this.crying = true
+      if (this.currentValue >= 70) {
+        this.crying = 3
         this.displayNotify()
-      }
+      } else if (this.currentValue >= 40 && this.currentValue < 70) {
+        this.crying = 2
+        this.displayNotify()
+      } else if (this.currentValue > 0 && this.currentValue < 40) {
+        this.crying = 1
+      } else this.crying = 0
     })
   },
   methods: {

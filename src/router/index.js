@@ -8,6 +8,7 @@ import HumidStatus from '../views/status-page/HumidStatus'
 import TempStatus from '../views/status-page/TempStatus'
 import SoundStatus from '../views/status-page/SoundStatus'
 import { auth } from '../firebase'
+import InfoUser from '../views/InfoUser.vue'
 
 const routes = [{
   path: '/',
@@ -67,6 +68,12 @@ const routes = [{
   meta: {
     requiresAuth: true
   }
+},
+{
+  path: '/user',
+  name: 'user info',
+  component: InfoUser
+
 }
 ]
 
@@ -83,10 +90,10 @@ router.beforeEach((to, from, next) => {
     return
   }
 
-  if (to.matched.some(record => record.meta.requiresAuth) && !currentUser) {
-    next('/login')
-    return
-  }
+  // if (to.matched.some(record => record.meta.requiresAuth) && !currentUser) {
+  //   next('/login')
+  //   return
+  // }
   next()
 })
 

@@ -5,44 +5,44 @@ import { getDatabase, ref, set } from 'firebase/database'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 
 const store = createStore({
-    state: {
-        users: null
+  state: {
+    users: null
+  },
+  mutations: {
+    SET_USER (state, user) {
+      state.user = user
     },
-    mutations: {
-        SET_USER(state, user) {
-            state.user = user
-        },
 
-        CLEAR_USER(state) {
-            state.user = null
+    CLEAR_USER (state) {
+      state.user = null
+    }
+  },
+  actions: {
+    async signup ({ commit }, details) {
+      const { email, password } = details
+      try {
+        await createUserWithEmailAndPassword(auth, email, password)
+      } catch (err) {
+        switch (err.code) {
+          case 'auth/email-already-in-use':
+            alert('Email already in use')
+            break
+          case 'auth/invalid-email':
+            alert('Invalid email')
+            break
+          case 'auth/weak-password':
+            alert('Password is too weak')
+            break
+          case 'auth/operation-not-allowed':
+            alert('Operation not allowed')
+            break
+          default:
+            alert('Something went wrong')
         }
-    },
-    actions: {
-        async signup({ commit }, details) {
-            const { email, password } = details
-            try {
-                await createUserWithEmailAndPassword(auth, email, password)
-            } catch (err) {
-                switch (err.code) {
-                    case 'auth/email-already-in-use':
-                        alert('Email already in use')
-                        break
-                    case 'auth/invalid-email':
-                        alert('Invalid email')
-                        break
-                    case 'auth/weak-password':
-                        alert('Password is too weak')
-                        break
-                    case 'auth/operation-not-allowed':
-                        alert('Operation not allowed')
-                        break
-                    default:
-                        alert('Something went wrong')
-                }
 
-                return
-            }
-            /* eslint-disable */
+        return
+      }
+      /* eslint-disable */
             const write_db = () => {
                 const db = getDatabase()
                 set(ref(db, 'babys/' + auth.currentUser.uid), {

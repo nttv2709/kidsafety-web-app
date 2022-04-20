@@ -15,17 +15,20 @@ import StatusDataService from '../../services/StatusDataService'
 import { onValue, ref } from 'firebase/database'
 export default {
   name: 'HumidStatus',
+  props: { getHumid: Function },
   data () {
     return {
       currentValue: '',
+      humid: [],
       status: ''
     }
   },
   mounted () {
-    console.log(StatusDataService.getAll())
     onValue(ref(StatusDataService.getAll(), '/iot/humi'), (snapshot) => {
       const data = snapshot.val()
       this.currentValue = data.value
+      this.humid.push(this.currentValue)
+      this.getHumid(this.humid)
       if (this.currentValue >= 50) {
         this.status = 'High'
       }
