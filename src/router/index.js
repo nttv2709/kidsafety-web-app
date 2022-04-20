@@ -77,6 +77,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const currentUser = auth.currentUser
+  console.log(currentUser)
   if (to.path === '/login' && currentUser) {
     next('/')
     return

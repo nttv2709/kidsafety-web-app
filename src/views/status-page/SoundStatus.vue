@@ -1,7 +1,7 @@
 <template>
 <div class="modal" id="id1">
   <div class="modal-dialog position-absolute w-75 top-50 start-50 translate-middle">
-    <div class="modal-content " style="border-radius: 25px">
+    <div class="modal-content blur " style="border-radius: 25px">
       <div class="modal-header">
         <h5 class="modal-title">Modal title</h5>
         <button type="button" class="btn-close" @click="hiddenNotify" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -20,6 +20,7 @@ import { onValue, ref } from 'firebase/database'
 export default {
   name: 'SoundStatus',
   data () {
+    console.log(document.getElementById('app'))
     return {
       currentValue: '',
       sound: [],
@@ -40,6 +41,8 @@ export default {
   methods: {
     displayNotify () {
       document.getElementById('id1').style.display = 'block'
+      // document.getElementById('app').style.opacity = 0.5
+      // document.getElementById('id1').style.opacity = 1
     },
     hiddenNotify () {
       document.getElementById('id1').style.display = 'none'
@@ -47,8 +50,14 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
   .modal {
     position: absolute;
   }
+  .blur {
+    box-shadow: 0px 0px 20px 20px rgba(255,255,255,1);
+    text-shadow: 0px 0px 10px rgba(51, 51, 51, 0.9);
+    transform: scale(0.9);
+    opacity: 0.6;
+}
 </style>

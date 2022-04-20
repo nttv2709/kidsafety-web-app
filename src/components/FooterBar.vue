@@ -6,11 +6,11 @@
       <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
     </a>
 
-    <ul class="nav col-md-4 justify-content-center">
+    <!-- <ul class="nav col-md-4 justify-content-center">
       <li class="nav-item"><router-link to="/" class="nav-link px-2 text-muted">Home</router-link></li>
       <li class="nav-item"><router-link to="/status" class="nav-link px-2 text-muted">Status</router-link></li>
       <li class="nav-item"><router-link to="/contact" class="nav-link px-2 text-muted">Contact us</router-link></li>
-    </ul>
+    </ul> -->
   </footer>
 </template>
 
