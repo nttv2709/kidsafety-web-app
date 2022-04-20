@@ -49,7 +49,10 @@
             >
               Log in
             </router-link>
-            <button v-else type="button" class="notice btn btn-light border rounded-pill text-uppercase" @click="$store.dispatch('logout')">Log out</button>
+            <button v-else type="button" class="notice m-2 btn btn-light border rounded-pill text-uppercase" @click="$store.dispatch('logout')">Log out</button>
+              <router-link to="/user" class="user-info btn btn-light rounded-circle p-0" v-if="$store.state.user">
+                <img src="../assets/user.png">
+              </router-link>
           </div>
     </div>
   </nav>
@@ -89,5 +92,13 @@ font-weight: medium;
 .notice {
   color: #57B3FE;
   font-weight: medium;
+}
+.nav-item:hover {
+  background-color: rgb(169, 166, 166);
+  border-radius: 25px;
+  padding: 0.25rem;
+}
+.user-info {
+  background-image: url('../assets/user.png');
 }
 </style>
