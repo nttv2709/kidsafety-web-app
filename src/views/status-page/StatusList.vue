@@ -1,27 +1,26 @@
 <template>
-<sound-status></sound-status>
-<div class="humid">
-  <humid-status :getHumid='getHumid'></humid-status>
+<div class="container">
+    <sound-status></sound-status>
+    <humid-status></humid-status>
+    <temp-status></temp-status>
+  <div class="position-absolute top-50 end-0 translate-middle-y">
+    <line-chart></line-chart>
+  </div>
 </div>
-<div class="temp">
-  <temp-status></temp-status>
-</div>
-<!-- <line-chart></line-chart> -->
 </template>
 
 <script>
-import HumidStatus from './HumidStatus.vue'
+// import HumidStatus from './HumidStatus.vue'
 import TempStatus from './TempStatus.vue'
-// import LineChart from './LineChart.vue'
 import SoundStatus from './SoundStatus.vue'
+import LineChart from './LineChart.vue'
+import HumidStatus from './HumidStatus.vue'
+
 export default {
   name: 'StatusList',
-  components: { HumidStatus, TempStatus, SoundStatus },
+  components: { TempStatus, SoundStatus, LineChart, HumidStatus },
   data () {
     return {
-      humid: [],
-      sound: [],
-      temp: []
     }
   },
   methods: {
