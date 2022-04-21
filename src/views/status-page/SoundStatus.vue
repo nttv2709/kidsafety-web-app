@@ -1,13 +1,19 @@
 <template>
-<div class="row rounded-pill g-0 m-5 bg-light position-relative" style="width:20%">
-  <div class="col-md-6 mb-md-0 p-md-4">
-    <img v-if="crying == 3" src="../../assets/cry2.png" class="w-100" alt="...">
-    <img v-else-if="crying == 2" src="../../assets/cry1.png" class="w-100" alt="...">
-    <img v-else-if="crying == 1" src="../../assets/smile.png" class="w-100" alt="...">
-    <img v-else src="../../assets/sleepy.png" class="w-100" alt="...">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <div class="card bg-c-pink order-card rounded-pill w-50">
+      <div class="card-block">
+          <h6 class="h5 m-b-20">Baby Status</h6>
+          <h2 class="text-right d-flex justify-content-center">
+            <div class="col-md-4 mb-md-6 p-md-6">
+              <img v-if="crying == 3" src="../../assets/cry2.png" alt="...">
+              <img v-else-if="crying == 2" src="../../assets/cry1.png" alt="...">
+              <img v-else-if="crying == 1" src="../../assets/smile.png" alt="...">
+              <img v-else src="../../assets/sleepy.png" alt="...">
+            </div>
+          </h2>
+      </div>
   </div>
-</div>
-<!-- <div class="modal faded" id="id1">
+<div class="modal faded" id="id1">
   <div class="modal-dialog position-absolute w-75 top-50 start-50 translate-middle">
     <div class="modal-content " style="border-radius: 25px">
       <div class="modal-header">
@@ -19,7 +25,7 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
 </template>
 
 <script>
@@ -31,7 +37,7 @@ export default {
     console.log(document.getElementById('app'))
     return {
       currentValue: '',
-      sound: [],
+      status: '',
       crying: 0
     }
   },
@@ -39,23 +45,26 @@ export default {
     onValue(ref(StatusDataService.getAll(), '/iot/sound'), (snapshot) => {
       const data = snapshot.val()
       this.currentValue = data.value
-      this.sound.push(this.currentValue)
       if (this.currentValue >= 70) {
         this.crying = 3
+        this.status = 'Crying'
         this.displayNotify()
       } else if (this.currentValue >= 40 && this.currentValue < 70) {
         this.crying = 2
+        this.status = 'Crying'
         this.displayNotify()
       } else if (this.currentValue > 0 && this.currentValue < 40) {
         this.crying = 1
-      } else this.crying = 0
+        this.status = 'Smiling'
+      } else {
+        this.crying = 0
+        this.status = 'Sleeping'
+      }
     })
   },
   methods: {
     displayNotify () {
       document.getElementById('id1').style.display = 'block'
-      // document.getElementById('app').style.opacity = 0.5
-      // document.getElementById('id1').style.opacity = 1
     },
     hiddenNotify () {
       document.getElementById('id1').style.display = 'none'
@@ -63,7 +72,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
   .modal {
     position: absolute;
   }
@@ -74,4 +83,35 @@ export default {
     -o-filter: blur(8px);
     filter: blur(8px);
   }
+  body{
+    background:#FAFAFA;
+}
+.order-card {
+    color: #fff;
+}
+
+.bg-c-pink {
+  background: #c36b85;
+    /* background: linear-gradient(45deg,#dea2b4,#b75a47); */
+}
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    border: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.card .card-block {
+    padding: 25px;
+}
+
+.order-card i {
+    font-size: 26px;
+}
+/* img {
+   width: 72.5%;
+} */
 </style>

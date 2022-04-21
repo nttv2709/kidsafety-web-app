@@ -7,7 +7,6 @@ import ContactUs from '../views/ContactUs.vue'
 import HumidStatus from '../views/status-page/HumidStatus'
 import TempStatus from '../views/status-page/TempStatus'
 import SoundStatus from '../views/status-page/SoundStatus'
-import LineChart from '../views/status-page/LineChart'
 import { auth } from '../firebase'
 import InfoUser from '../views/InfoUser.vue'
 
@@ -66,14 +65,6 @@ const routes = [{
   path: '/contact',
   name: 'contact',
   component: ContactUs,
-  meta: {
-    requiresAuth: true
-  }
-},
-{
-  path: '/chart',
-  name: 'chart',
-  component: LineChart,
   meta: {
     requiresAuth: true
   }

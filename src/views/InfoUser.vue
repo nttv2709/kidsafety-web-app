@@ -1,32 +1,41 @@
 <template>
-  <div class="frame position-absolute top-50 start-50 translate-middle">
-    <form @submit.prevent='login'>
-      <div class="frame avt-user rounded-circle">
-      </div>
-      <div class="content">
-        <div class="mb-3">
-          <label for="baby-name">Baby name</label>
-          <input type="text" class="form-control rounded-pill" v-model="baby_form.baby_name"  id="baby-name" aria-describedby="babyName" >
+  <div class="container rounded-1 position-relative" id="frame">
+    <form @submit.prevent='login' class="shadow">
+      <div class=" image d-flex flex-column justify-content-center align-items-center mb-3"> <button class="btn btn-secondary rounded-circle"> <img src="../assets/user.png" height="100" width="100" /></button> <span class="name mt-3">User information</span></div>
+      <div class="content row align-items-start">
+        <div class="baby col">
+          <div class="mb-3">
+            <label for="babyName" class="form-label">Baby name</label>
+            <input type="text" class="form-control rounded-pill" v-model="babyName"  id="baby-name" aria-describedby="babyName" required>
+          </div>
+          <div class="mb-3">
+            <label for="babyName" class="form-label">Baby birthday</label>
+            <input type="date" class="form-control rounded-pill" v-model="babyBirth"  id="baby-birth" aria-describedby="babyBirth" required>
+          </div>
+          <div class="mb-3 input-group">
+            <label for="babyName" class="form-label">Baby height</label>
+            <div class="input-group">
+              <input type="number" class="form-control rounded-pill" v-model="babyHeight" id="baby-height" aria-describedby="babyHeight" required>
+              <span class="align-items-center" style="margin-top: 6px; margin-left:4px;">cm</span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="babyName" class="form-label">Baby weight</label>
+            <div class="input-group">
+              <input type="number" class="form-control rounded-pill" v-model="babyWeight" id="baby-weight" aria-describedby="babyWeight" required>
+              <span class="text-center align-middle" style="margin-top: 7px; margin-left:4px;">kg</span>
+            </div>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="baby-birth">Baby birth</label>
-          <input type="date" class="form-control rounded-pill" v-model="baby_form.baby_birth"  id="baby-birth" aria-describedby="babyBirth" >
-        </div>
-        <div class="mb-3">
-          <label for="baby-height">Baby height</label>
-          <input type="number" class="form-control rounded-pill" v-model="baby_form.baby_height" id="baby-height" aria-describedby="babyHeight" ><span> cm</span>
-        </div>
-        <div class="mb-3">
-          <label for="baby-weight">Baby weight</label>
-          <input type="number" class="form-control rounded-pill" v-model="baby_form.baby_weight" id="baby-weight" aria-describedby="babyWeight" > kg
-        </div>
-        <div class="mb-3">
-          <label for="parent-name">Parent name</label>
-          <input type="text" class="form-control rounded-pill" v-model="baby_form.parent_name"  id="parent-name" aria-describedby="parentName" >
-        </div>
-        <div class="mb-3">
-          <label for="parent-phone">Parent phone</label>
-          <input type="tel" class="form-control rounded-pill" v-model="baby_form.parent_phone"  id="parent-phone" aria-describedby="parentPhone" required>
+        <div class="parent col">
+          <div class="mb-3">
+            <label for="parentName" class="form-label">Parent name</label>
+            <input type="text" class="form-control rounded-pill" v-model="parentName"  id="parent-name" aria-describedby="parentName" required>
+          </div>
+          <div class="mb-3">
+            <label for="parentPhone" class="form-label">Parent phone</label>
+            <input type="tel" class="form-control rounded-pill" v-model="parentPhone"  id="parent-phone" aria-describedby="parentPhone" required>
+          </div>
         </div>
       </div>
       <div class="container-fluid">
@@ -84,7 +93,6 @@ export default {
 form {
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 25px;
-    margin: 5rem;
     padding: 2rem 4rem;
   }
   .content {
@@ -105,5 +113,11 @@ padding: 0.75rem 1.25rem;
   }
   .avt-user {
     background-image: url('../assets/user.png');
+  }
+  .name {
+    color: #557DCA;
+  }
+  #frame {
+    width: 75vw;
   }
 </style>
