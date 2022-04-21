@@ -13,6 +13,7 @@
 <script>
 import StatusDataService from '../../services/StatusDataService'
 import { onValue, ref } from 'firebase/database'
+const TempArr = []
 export default {
   name: 'TempStatus',
   data () {
@@ -25,6 +26,8 @@ export default {
   mounted () {
     onValue(ref(StatusDataService.getAll(), '/iot/temp'), (snapshot) => {
       const data = snapshot.val()
+      TempArr.push(data.value)
+      console.log(TempArr)
       this.currentValue = data.value
       this.temperature.push(this.currentValue)
       if (this.currentValue >= 27 && this.currentValue < 32) {
