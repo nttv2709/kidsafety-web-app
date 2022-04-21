@@ -7,7 +7,7 @@
     <img v-else src="../../assets/sleepy.png" class="w-100" alt="...">
   </div>
 </div>
-<div class="modal" id="id1">
+<!-- <div class="modal faded" id="id1">
   <div class="modal-dialog position-absolute w-75 top-50 start-50 translate-middle">
     <div class="modal-content " style="border-radius: 25px">
       <div class="modal-header">
@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 </template>
 
 <script>
@@ -67,5 +67,11 @@ export default {
   .modal {
     position: absolute;
   }
-
+  .wrapper{
+    -webkit-filter: blur(8px);
+    -ms-filter: blur(8px);
+    -moz-filter: blur(8px);
+    -o-filter: blur(8px);
+    filter: blur(8px);
+  }
 </style>

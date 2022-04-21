@@ -30,7 +30,7 @@
         id="navbarNav"
         v-if="$store.state.user"
       >
-        <ul class="navbar-nav">
+        <ul class="navbar-nav position-absolute start-50 translate-middle-x">
             <li class="nav-item">
               <router-link to="/" class="nav-link" >Home</router-link>
             </li>
@@ -94,7 +94,7 @@ font-weight: medium;
   font-weight: medium;
 }
 .nav-item:hover {
-  background-color: rgb(169, 166, 166);
+  background-color: rgb(255, 253, 253);
   border-radius: 25px;
   padding: 0.25rem;
 }

@@ -1,5 +1,5 @@
 <template>
-<div class="row rounded-pill g-0 m-5 bg-light position-relative" style="width:20%; background-color: white;">
+<div class="float-sm-start row rounded-pill g-0 m-5 bg-light position-relative" style="width:20%; background-color: white;">
   <div class="col-md-6 mb-md-0 p-md-4">
     <img src="../../assets/hot.png" class="w-100" alt="...">
   </div>

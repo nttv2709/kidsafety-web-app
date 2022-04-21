@@ -1,5 +1,5 @@
 <template>
-<div class="row rounded-pill g-0 m-5 bg-light position-relative" style="width:20%">
+<div class="row rounded-pill m-5 bg-light position-relative" style="width:20%">
   <div class="col-md-6 mb-md-0 p-md-4">
     <img src="../../assets/humid.png" class="w-100" alt="...">
   </div>
