@@ -13,19 +13,21 @@
           </h2>
       </div>
   </div>
+  <div class="notice">
 <div class="modal faded" id="id1">
   <div class="modal-dialog position-absolute w-75 top-50 start-50 translate-middle">
-    <div class="modal-content " style="border-radius: 25px">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+    <div class="modal-content" style="border-radius: 25px; ">
+      <div class="modal-header" style="border-radius: 25px 25px 0px 0px; background: #ab204a; color: white">
         <button type="button" class="btn-close" @click="hiddenNotify" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Baby is crying</p>
+        <h5>Baby is crying</h5>
       </div>
     </div>
   </div>
 </div>
+  <div class="modal-backdrop fade" id="modal-backdrop"></div>
+  </div>
 </template>
 
 <script>
@@ -64,10 +66,12 @@ export default {
   },
   methods: {
     displayNotify () {
+      document.getElementById('modal-backdrop').style.display = 'block'
       document.getElementById('id1').style.display = 'block'
     },
     hiddenNotify () {
       document.getElementById('id1').style.display = 'none'
+      document.getElementById('modal-backdrop').style.display = 'none'
     }
   }
 }
@@ -103,13 +107,16 @@ export default {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
-
 .card .card-block {
     padding: 25px;
 }
 
 .order-card i {
     font-size: 26px;
+}
+.modal-backdrop
+{
+    opacity:0.5 !important;
 }
 /* img {
    width: 72.5%;

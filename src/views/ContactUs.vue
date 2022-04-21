@@ -93,7 +93,7 @@ body {
 }
 form {
     background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 25px;
+    border-radius: 40px;
     margin: 5rem;
     padding: 2rem 4rem;
     width: 100vw;
