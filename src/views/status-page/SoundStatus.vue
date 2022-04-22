@@ -26,7 +26,7 @@
     </div>
   </div>
 </div>
-  <div class="modal-backdrop fade" id="modal-backdrop"></div>
+  <div class="modal-backdrop" id="modal-backdrop"></div>
   </div>
 </template>
 
@@ -36,7 +36,6 @@ import { onValue, ref } from 'firebase/database'
 export default {
   name: 'SoundStatus',
   data () {
-    console.log(document.getElementById('app'))
     return {
       currentValue: '',
       status: '',
@@ -117,6 +116,7 @@ export default {
 .modal-backdrop
 {
     opacity:0.5 !important;
+    display: none;
 }
 /* img {
    width: 72.5%;

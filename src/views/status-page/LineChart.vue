@@ -1,108 +1,83 @@
 <template>
-   <div id="chart">
-      <apexchart type="line" height="350" ref="chart" :options="chartOptions" :series="series"></apexchart>
-    </div>
+  <div class="chart p-5">
+    <apexchart width="100%" type="line" :options="this.options" :series="this.series"></apexchart>
+  </div>
 </template>
 <script>
 import { defineComponent } from 'vue'
-import { VueApexCharts, lastDate, getNewSeries, resetData, XAXISRANGE } from 'vue3-apexcharts'
+// import { VueApexCharts } from 'vue3-apexcharts'
 import StatusDataService from '../../services/StatusDataService'
-import { onValue, ref } from 'firebase/database'
+import { get, ref } from 'firebase/database'
 export default defineComponent({
   name: 'LineChart',
   el: '#app',
-  components: {
-    apexchart: VueApexCharts
-  },
-  data () {
-    return {
-      series:
-      [
-        {
-          name: 'Humid',
-          data: [0, 29, 33, 36, 32, 32, 32]
-        }
-      ],
-      chartOptions: {
+  async data () {
+    const { labels, tempData, humidData } = await this.getStatusData()
+    return await {
+      options: {
         chart: {
-          id: 'realtime',
-          height: 350,
-          type: 'line',
-          animations: {
-            enabled: true,
-            easing: 'linear',
-            dynamicAnimation: {
-              speed: 1000
-            }
-          },
-          toolbar: {
-            show: false
-          }
-        },
-        colors: ['#77B6EA', '#545454'],
-        dataLabels: {
-          enabled: true
-        },
-        stroke: {
-          curve: 'smooth'
-        },
-        title: {
-          text: 'Average High & Low Temperature',
-          align: 'left'
-        },
-        markers: {
-          size: 0
+          id: 'vuechart-example'
         },
         xaxis: {
-          type: 'datetime',
-          range: XAXISRANGE
-        },
-        yaxis: {
-          max: 100
-        },
-        legend: {
-          show: false
+          categories: labels
         }
-      }
+      },
+      series: [{
+        name: 'Temperature',
+        data: tempData
+      },
+      {
+        name: 'Humidity',
+        data: humidData
+      }]
     }
   },
-  mounted: function () {
-    onValue(ref(StatusDataService.getAll(), '/iot/humi'), (snapshot) => {
-      const data = snapshot.val()
-      this.series.data.push(data.value)
-    })
-    const me = this
-    window.setInterval(function () {
-      getNewSeries(lastDate, {
-        min: 10,
-        max: 90
+  methods: {
+    getData: async () => {
+      const labels = []
+      const db = StatusDataService.getAll()
+      const tempData = await get(ref(db, 'tempArr/')).then((snapshot) => {
+        if (snapshot.exists()) {
+          const tempArr = []
+          for (const i in snapshot.val()) {
+            tempArr.push(snapshot.val()[i])
+            const d = new Date()
+            labels.push(d.getHours() + ':' + d.getMinutes())
+          }
+          return tempArr
+        } else {
+          console.log('No data available')
+        }
+      }).catch((error) => {
+        console.error(error)
       })
-
-      me.$refs.chart.updateSeries([{
-        data: this.dataValue.humid
-      }])
-    }, 1000)
-
-    // every 60 seconds, we reset the data to prevent memory leaks
-    window.setInterval(function () {
-      resetData()
-
-      me.$refs.chart.updateSeries([{
-        data: this.dataValue.humid
-      }], false, true)
-    }, 60000)
+      const humidData = await get(ref(db, 'humidArr/')).then((snapshot) => {
+        if (snapshot.exists()) {
+          const humidArr = []
+          for (const i in snapshot.val()) {
+            humidArr.push(snapshot.val()[i])
+          }
+          return humidArr
+        } else {
+          console.log('No data available')
+        }
+      }).catch((error) => {
+        console.error(error)
+      })
+      return { labels, tempData, humidData }
+    },
+    async getStatusData () {
+      const { labels, tempData, humidData } = await this.getData()
+      return { labels, tempData, humidData }
+    }
   }
 })
 </script>
 
 <style>
-canvas.chartjs-render-monitor{
+.chart {
+  background: rgb(55, 54, 54);
+  border-radius: 25px;
   position: relative;
-  display: block;
-  width: 800px !important;
-  height: 600px !important;
-  aspect-ratio: auto 1 / 1;
-  margin-top: 5rem;
-  margin-right: 7rem;
 }
 </style>
